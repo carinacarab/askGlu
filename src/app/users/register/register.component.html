@@ -1,0 +1,55 @@
+<div class="container">
+
+    <h3 style="margin:auto">Welcome to askGlu! Create your account below.</h3>
+    <h5 *ngIf='message'>
+      {{message}}
+    </h5>
+    <form [formGroup]= "registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="col">
+                <label for="fName">first name</label>
+                <input type="text" class="form-control" formControlName="fName" id="fName" autocomplete="off">
+                <div class="alert alert-danger" *ngIf="registerForm.get('fName').hasError('required') && registerForm.get('fName').touched">This field is required.</div>
+            </div>
+            <div class="col">
+                <label for="lName">last name</label>
+                <input type="lName" class="form-control" formControlName="lName" id="lName" autocomplete="off">
+                <div class="alert alert-danger" *ngIf="registerForm.get('fName').hasError('required') && registerForm.get('fName').touched">This field is required.</div>
+            </div>
+        </div>
+
+      <div class="form-group">
+        <label for="email">email address</label>
+        <input type="email" class="form-control" formControlName="email" id="email" autocomplete="off">
+        <div class="alert alert-danger" *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').touched">This field is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="username">username</label>
+        <input type="username" class="form-control" formControlName="username" id="username" autocomplete="off">
+        <div class="alert alert-danger" *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched">This field is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">password</label>
+        <input type="password" class="form-control" formControlName="password" id="username" autocomplete="off">
+        <div class="alert alert-danger" *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">This field is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="role">Are you a..?</label>
+        <select class="form-control" formControlName="role" id="role" aria-placeholder="">
+          <option>Diabetic</option>
+          <option>Support Person</option>
+        </select>
+      </div>
+
+      
+
+      <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Register</button>
+      <div *ngIf="invalidRegister" class="error">
+          <div> There were errors in this form. </div>
+      </div>
+
+    </form>
+</div>
