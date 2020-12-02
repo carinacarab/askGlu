@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicesService } from '../../services/services.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,13 +13,14 @@ export class RegisterComponent implements OnInit {
 
   message:string = "";
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private apiService: ServicesService) { }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, 
+              private router: Router, private apiService: ServicesService) { }
 
   registerForm: FormGroup;
   invalidRegister: boolean = false;
 
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.registerForm = this.formBuilder.group({
       fName: ['',[Validators.required, Validators.maxLength(100)] ],
       lName: ['',[Validators.required, Validators.maxLength(100)] ],
@@ -49,6 +50,5 @@ export class RegisterComponent implements OnInit {
       console.log(data);
     });
   }
-
 
 }

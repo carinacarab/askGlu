@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule} from '@angular/router'
 import { AppRoutingModule } from './app-routing.module';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './users/profile/profile.component';
@@ -27,6 +27,8 @@ import { ServicesService } from './services/services.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule, 
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '',   component: HomeComponent},
@@ -35,7 +37,6 @@ import { ServicesService } from './services/services.service';
       { path: 'register', component: RegisterComponent },
     ]),
     FormsModule,
-    ReactiveFormsModule, 
   ],
   exports: [
     FormsModule,

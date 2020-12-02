@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services/services.service';
-import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-login',
@@ -13,10 +13,12 @@ export class LoginComponent implements OnInit {
 
   message:string = "Please login to access your account.";
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private apiService: ServicesService) { }
-
   loginForm: FormGroup;
   invalidLogin: boolean = false;
+
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, 
+            private router: Router, private apiService: ServicesService) { }
+
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -30,14 +32,7 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid){
       return;
     }
-
-    const loginData = {
-      username: this.loginForm.controls.username.value,
-      password: this.loginForm.controls.password.value
-    };
-
-    this.apiService.login(loginData).subscribe((data: any) => {
-      console.log(data);
-    });
   }
+  
+
 }

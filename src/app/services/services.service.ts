@@ -10,7 +10,7 @@ import { ApiResponse } from '../Model/api-response';
 export class ServicesService {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'http://localhost/askGluWebApp/php';
+  baseUrl = 'localhost:8080/phppgadmin/askGluWebApp';
 
   login(loginData): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(this.baseUrl + '/login.php', loginData);

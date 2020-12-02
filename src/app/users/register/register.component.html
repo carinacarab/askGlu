@@ -1,6 +1,9 @@
+<body class="body" style="background-color: #DFCFBE; height: 600px;"> 
 <div class="container">
 
     <h3 style="margin:auto">Welcome to askGlu! Create your account below.</h3>
+    <h3>           </h3>
+    <h3>           </h3>
     <h5 *ngIf='message'>
       {{message}}
     </h5>
@@ -46,10 +49,11 @@
 
       
 
-      <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Register</button>
+      <button type="submit" class="btn btn-success" >Register</button>
       <div *ngIf="invalidRegister" class="error">
           <div> There were errors in this form. </div>
       </div>
 
     </form>
 </div>
+</body>
