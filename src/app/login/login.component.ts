@@ -32,6 +32,17 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid){
       return;
     }
+    const loginData = {
+      username: this.loginForm.controls.username.value,
+      password: this.loginForm.controls.password.value
+    };
+
+    this.apiService.login(loginData).subscribe(data => {
+      this.router.navigate(['login']);
+    },
+    error => {
+
+    });
   }
   
 

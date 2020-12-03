@@ -9,14 +9,15 @@ import { ApiResponse } from '../Model/api-response';
 })
 export class ServicesService {
 
-  constructor(private http: HttpClient) { }
-  baseUrl = 'localhost:8080/phppgadmin/askGluWebApp';
+  baseUrl:string = "localhost/askGluWebApp/php";
 
-  login(loginData): Observable<ApiResponse> {
+  constructor(private http: HttpClient) { }
+
+  public login(loginData): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(this.baseUrl + '/login.php', loginData);
   }
 
-  register(registerData): Observable<ApiResponse> {
+  public register(registerData): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(this.baseUrl + '/register.php', registerData);
   }
 }

@@ -1,5 +1,4 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +9,14 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   title:string = 'askGlu';
+  loginbutton:boolean;
+  logoutbutton:boolean;
 
-  constructor() { }
+
+  constructor() { 
+    this.logoutbutton=false;
+    this.loginbutton=true;
+  }
 
   ngOnInit(): void {
   }
