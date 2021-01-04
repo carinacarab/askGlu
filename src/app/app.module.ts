@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ServicesService } from './services/services.service';
+import { BsmanagerComponent } from './bsmanager/bsmanager.component';
+import { MealplannerComponent } from './mealplanner/mealplanner.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ServicesService } from './services/services.service';
     EditComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BsmanagerComponent,
+    MealplannerComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,10 @@ import { ServicesService } from './services/services.service';
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'bsmanager', component: BsmanagerComponent },
+      { path: 'mealplanner', component: MealplannerComponent },
+
     ]),
     FormsModule,
   ],

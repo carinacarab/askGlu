@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services/services.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit(){
+  onSubmit(loginForm){
     console.log(this.loginForm.value);
     if(this.loginForm.invalid){
       return;
@@ -37,8 +38,9 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.controls.password.value
     };
 
-    this.apiService.login(loginData).subscribe(data => {
-      this.router.navigate(['login']);
+    this.apiService.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value).pipe(first()).subscribe(data => {
+      //const redirect = this.apiService.redirect_URL ? this.apiService.redirect_URL: 'profile';
+      this.router.navigate(['profile']);
     },
     error => {
 

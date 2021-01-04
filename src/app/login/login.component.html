@@ -1,11 +1,11 @@
-<body class="body" style="background-color: #DFCFBE; height: 600px;"> 
+<body class="body" style="background-color: #d7fffcdf; height: 600px;"> 
     <div class="container">
       
         <h2 style="margin:auto">Welcome Back!</h2>
         <h4 *ngIf='message'>
           {{message}}
         </h4>
-        <form [formGroup]= "loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]= "loginForm" (ngSubmit)="onSubmit(loginForm)">
           <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off" >
