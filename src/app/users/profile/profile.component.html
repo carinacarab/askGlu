@@ -1,17 +1,48 @@
-<body class="body" style="background-color: #d7fffcdf; height:600px;" > 
+<body class="body" style="background-color: #d7fffcdf; height:2000px;" > 
     <div class="container">
     
-        <h2>Welcome USERNAME</h2>
+        <h2>Hello <strong>{{user}}</strong></h2>
+        <br>
 
-        <p>Would you like to post a diary entry today?</p>
+        <form [formGroup]= "postForm" (ngSubmit)="onSubmit(postForm)">
+      
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" formControlName="post" id="post" placeholder="Would you like to post a public diary entry today?" aria-label="Recipient's thoughts" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Post</button>
+              </div>
+        </form>      
 
-        <p>//post functionality here</p>
-
+        <div class="container">
+            <table class="table table-hover table-sm table-borderless">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Peer</th>
+                        <th scope="col">Entry</th>
+                        <th scope="col">Last Posted</th>
+                    </tr>
+                    
+                </thead>
+                <tbody class="table-light">
+                    <tr *ngFor="let data of posts">
+                        <td>{{data['uname']}}</td>
+                        <td>{{data['thought']}}</td>
+                        <td>{{data['age']}}</td>
+                    </tr>
+                </tbody>
+    
+            </table>
+        </div>
+        <br>
+        <h3>Meal Planning</h3>
         <p>Need to plan for a meal? Click here. (Route to meal planning)</p>
-
+        <br>
+        
+        <h3>Blood Sugar Management</h3>
         <p>Want to see blood sugar history? Click here. (Route to blood sugar management)</p>
+        <br>
 
-        <p>Need to change med requirements? Click here. (Route to Settings)</p>
+        <h3>Have your meds changed lately?</h3>
+        <p>Click here. (Route to Settings)</p>
 
     
     </div>

@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ServicesService } from './services/services.service';
 import { BsmanagerComponent } from './bsmanager/bsmanager.component';
 import { MealplannerComponent } from './mealplanner/mealplanner.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MealplannerComponent } from './mealplanner/mealplanner.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
+    CommonModule, 
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '',   component: HomeComponent},

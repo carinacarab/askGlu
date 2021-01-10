@@ -1,15 +1,19 @@
 export class User {
 
-    public userid: number;
-    public firstName: string;
-    public lastName: string;
-    public password: string;
-    public email: string;
+    userid: number;
+    fName: string;
+    lName: string;
+    username: string;
+    password: string;
+    email: string;
+    role: string;
+
+
 
     constructor(userid:number, firstname:string, lastname:string, password:string, email:string ){
         this.userid = userid;
-        this.firstName = firstname;
-        this.lastName = lastname;
+        this.fName = firstname;
+        this.lName = lastname;
         this.password = password;
         this.email = email;
     }

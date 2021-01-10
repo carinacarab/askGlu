@@ -14,44 +14,37 @@ import { first } from 'rxjs/operators';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-
-  message:string = "";
+  submitted: boolean = false;
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder, 
-              private router: Router, private apiService: ServicesService) { 
-                this.registerForm = this.formBuilder.group({
-                  fName: ['',[Validators.required, Validators.maxLength(100)] ],
-                  lName: ['',[Validators.required, Validators.maxLength(100)] ],
-                  email: ['',[Validators.required, Validators.maxLength(35)] ],
-                  username: ['',[Validators.required, Validators.maxLength(20)] ],
-                  password: ['',[Validators.required, Validators.maxLength(100)] ],
-                  role: ['',[Validators.required, Validators.maxLength(7)] ]
-                });
-              }
+              private router: Router, private apiService: ServicesService) { }
 
   
   invalidRegister: boolean = false;
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      fName: ['',[Validators.required, Validators.maxLength(100)] ],
+      lName: ['',[Validators.required, Validators.maxLength(100)] ],
+      email: ['',[Validators.required, Validators.email] ],
+      username: ['',[Validators.required, Validators.maxLength(20)] ],
+      password: ['',[Validators.required, Validators.minLength(8)] ],
+      role: ['',[Validators.required, Validators.maxLength(7)] ]
+    });
+  }
 
   onSubmit(){
     console.log(this.registerForm.value);
     //if(this.registerForm.invalid)
-    //  return;
+    //  return;  this.registerForm.controls.fName.value, this.registerForm.controls.lName.value, this.registerForm.controls.email.value, this.registerForm.controls.username.value, this.registerForm.controls.password.value, this.registerForm.controls.role.value
 
-    const registerData = {
-      fName: this.registerForm.controls.fName.value,
-      lName: this.registerForm.controls.lName.value, 
-      email: this.registerForm.controls.email.value, 
-      username: this.registerForm.controls.username.value, 
-      password: this.registerForm.controls.password.value, 
-      role: this.registerForm.controls.role.value
-    };
-
-    this.apiService.register(registerData).pipe(first()).subscribe(data => { 
-       this.router.navigate(['login']);  
-    });
+    this.apiService.register(this.registerForm.value)
+        .subscribe(
+            data => { 
+                this.router.navigate(['login']);  
+            }
+        );
     
   }
 }

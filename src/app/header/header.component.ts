@@ -10,13 +10,15 @@ import { ServicesService } from '../services/services.service';
 export class HeaderComponent implements OnInit {
 
   title:string = 'askGlu';
+
   loginbutton:boolean;
   signoutButton:boolean;
 
   constructor(private apiService: ServicesService) {
       apiService.getLoggedInName.subscribe(name=> this.changeName(name));
+      
       if(this.apiService.isLoggedIn()){
-        console.log("loggedin");
+        //console.log("loggedin");
         this.loginbutton= false;
         this.signoutButton= true;
       }else {
@@ -31,7 +33,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    this.apiService.deleteToken();
+    this.apiService.logout();
     window.location.href = window.location.href;
   }
 
