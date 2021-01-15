@@ -1,0 +1,40 @@
+<body class="body" style="background-color: #d7fffcdf; height: 1000px;"> 
+    <div class="container">
+    
+        <div class="center">
+          <h3>Let us continue registration.</h3>
+        </div>
+        <div class="body">
+          <p><i>"A best friend is the only one that walks into your life when the world has walked out"</i> <strong>- Shannon I. Alder</strong></p>
+          <p>If you haven't been told today: YOU matter.</p>
+        </div>
+        <br>
+     
+        <form [formGroup]= "supportForm" (ngSubmit)="onSubmit()">     
+
+            <div class="form-group">
+                <label for="fName">first name of diabetic</label>
+                <input type="text" class="form-control" formControlName="fName" id="fName" autocomplete="off">
+                <div class="alert alert-warning" *ngIf="supportForm.get('fName').hasError('required') && supportForm.get('fName').touched">This field is required.</div>
+            </div>
+            <div class="form-group">
+                <label for="lName">last name of diabetic</label>
+                <input type="lName" class="form-control" formControlName="lName" id="lName" autocomplete="off">
+                <div class="alert alert-warning" *ngIf="supportForm.get('fName').hasError('required') && supportForm.get('fName').touched">This field is required.</div>
+            </div>
+            <div class="form-group">
+                <label for="email">diabetic's email address</label>
+                <input type="email" class="form-control" formControlName="email" id="email" autocomplete="off">
+                <div class="alert alert-warning" *ngIf="supportForm.get('email').hasError('email') && supportForm.get('email').touched">This field is required.</div>
+            </div>
+          <div class="center">
+          <button type="submit" class="btn btn-success">Register</button>
+          <div *ngIf="invalidRegister" class="error">
+              <div> There were errors in this form. </div>
+          </div>
+        </div>
+    
+        </form>
+    </div>
+    </body>
+    

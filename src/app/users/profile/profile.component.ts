@@ -39,13 +39,17 @@ export class ProfileComponent implements OnInit {
     )
 
     this.postForm = this.formBuilder.group({
-      uname: this.user,
-      thought: ['', Validators.required]
+      post: ['']
     });
   }
 
   onSubmit(postForm){
-    this.apiService.post(postForm);
+    console.log(this.postForm.value);
+    this.apiService.post(this.user, this.postForm.controls.post.value).subscribe(
+      data => { 
+          this.router.navigate(['profile']);  
+      }
+    );
   }
 
 

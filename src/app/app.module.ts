@@ -16,6 +16,8 @@ import { ServicesService } from './services/services.service';
 import { BsmanagerComponent } from './bsmanager/bsmanager.component';
 import { MealplannerComponent } from './mealplanner/mealplanner.component';
 import { CommonModule } from '@angular/common';
+import { DiabeticregComponent } from './users/diabeticreg/diabeticreg.component';
+import { SupportregComponent } from './users/supportreg/supportreg.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { CommonModule } from '@angular/common';
     HeaderComponent,
     FooterComponent,
     BsmanagerComponent,
-    MealplannerComponent
+    MealplannerComponent,
+    DiabeticregComponent,
+    SupportregComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,9 @@ import { CommonModule } from '@angular/common';
       { path: 'profile', component: ProfileComponent },
       { path: 'bsmanager', component: BsmanagerComponent },
       { path: 'mealplanner', component: MealplannerComponent },
+      { path: 'diabeticreg', component: DiabeticregComponent},
+      { path: 'supportreg', component: SupportregComponent},
+
 
     ]),
     FormsModule,

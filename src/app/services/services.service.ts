@@ -21,6 +21,7 @@ export class ServicesService {
 
   @Output() getLoggedInName : EventEmitter<any> = new EventEmitter();
 
+
   redirect_URL: string;
 
   baseUrl:string = "http://localhost:8080/php";
@@ -46,12 +47,21 @@ export class ServicesService {
     return this.http.post<ApiResponse>(this.baseUrl + '/register.php', user);
   }
 
+  supportregister(username, first, last, email): Observable<ApiResponse>{
+    return this.http.post<ApiResponse>(this.baseUrl + '/supportregister.php', {username, first, last, email});
+  }
+
+  diabeticregister(username, permdose, time, correction, mealratio, pillfreq): Observable<ApiResponse>{
+    return this.http.post<ApiResponse>(this.baseUrl + '/diabeticregister.php', {username, permdose, time, correction, mealratio, pillfreq});
+  }
+
   getPosts():Observable<ApiResponse> {
     return this.http.get<Posts>(this.baseUrl + '/getposts.php');
   }
 
-  post(post : Posts): Observable<ApiResponse>{
-    return this.http.post<ApiResponse>(this.baseUrl, post);
+  post(user, post): Observable<ApiResponse>{
+    console.log(user +" " + post);
+    return this.http.post<ApiResponse>(this.baseUrl +'/post.php', {user, post});
   }
   /*
   handleError(error: HttpErrorResponse){
@@ -70,6 +80,10 @@ export class ServicesService {
 
   getToken () {
     return localStorage.getItem('user');
+  }
+
+  removeToken(){
+    localStorage.removeItem('user');
   }
 
   logout() {

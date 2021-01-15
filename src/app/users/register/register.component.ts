@@ -22,6 +22,8 @@ export class RegisterComponent implements OnInit {
   
   invalidRegister: boolean = false;
 
+  diabetic: boolean;
+
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -41,8 +43,20 @@ export class RegisterComponent implements OnInit {
 
     this.apiService.register(this.registerForm.value)
         .subscribe(
-            data => { 
-                this.router.navigate(['login']);  
+            (data: any) => { 
+                this.apiService.setToken(this.registerForm.controls.username.value);
+
+                console.log(data.role);
+                
+                if (data.role = "Diabetic"){
+                  this.router.navigate(['diabeticreg']);
+ 
+                }else{ 
+                  if (data.role = "Support Person"){
+                    this.router.navigate(['supportreg']);
+                  }
+                }
+                //this.router.navigate(['login']);  
             }
         );
     
