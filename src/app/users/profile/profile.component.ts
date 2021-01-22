@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Posts } from 'src/app/Model/posts';
 import { ServicesService } from 'src/app/services/services.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTable, MatTableDataSource} from '@angular/material/table';
 
 
 
@@ -14,11 +16,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
+  @ViewChild(MatPaginator) paginator : MatPaginator;
+
+  displayedColumns: string[] = ['peer', 'post', 'time'];
+
+
   message:string= "";
 
   user:string= "";
 
   posts: Posts[] = [];
+  post:string;
+  length: number;
+
+  dataSource;
+
 
   postForm: FormGroup;
 
@@ -35,7 +47,11 @@ export class ProfileComponent implements OnInit {
     this.apiService.getPosts().subscribe(
       (data:any) => {
         this.posts = data;
-        }    
+        this.length = this.posts.length;
+
+        this.dataSource = new MatTableDataSource<Posts>(this.posts);
+        this.dataSource.paginator = this.paginator;
+      }    
     )
 
     this.postForm = this.formBuilder.group({
@@ -43,13 +59,18 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  
+
   onSubmit(postForm){
-    console.log(this.postForm.value);
-    this.apiService.post(this.user, this.postForm.controls.post.value).subscribe(
+    //console.log(this.postForm.controls.post.value);
+    this.post = this.postForm.controls.post.value;
+    console.log(this.post);
+    this.apiService.poster(this.user, this.postForm.controls.post.value).subscribe(
       data => { 
-          this.router.navigate(['profile']);  
+      
       }
     );
+    window.location.reload();
   }
 
 

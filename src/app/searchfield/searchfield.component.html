@@ -1,0 +1,113 @@
+<body class="body" style="background-color: #d7fffcdf; height: relative;"> 
+  <div class="center"> <h3><strong>Meal Search</strong></h3> </div>
+    <form [formGroup]= "searchForm" (ngSubmit)="fetchFoods(searchForm)">
+        <div class="form-group">
+            <label>What will we be eating today?</label>
+            <input type="text" class="form-control" formControlName="search" id="search" placeholder="Type to search">
+            <button type="submit" class="btn btn-outline-dark" [disabled]="searchForm.invalid">Search</button>
+        </div>
+    </form>    
+<!--        <div class="container">
+            <table class="table table-hover table-sm table-borderless" data-click-to-select="true" data-pagination="true" data-show-refresh="true" data-height="15" data-virtual-scroll="true">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">itemID</th>
+                        <th scope="col">Food Name</th>
+                     
+                    </tr>
+                    
+                </thead>
+                <tbody class="table-light">
+                    <tr *ngFor="let data of foodlistdesc">
+                        <td><label class="form-radio">
+                                <input 
+                                type="radio" 
+                                name="id_number" 
+                                value="{{data['itemNo']}}"
+                                (change)="radioChangeHandler($event)">
+                                <i class="form-icon"></i>{{data['itemNo']}}
+                            </label>
+                        </td>
+                        <td>{{data['itemname']}}</td>
+                    
+                    </tr>
+                </tbody>
+
+            </table>
+        
+
+        </div> -->
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+          
+              <!-- id Column -->
+              <ng-container matColumnDef="itemNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> itemNo </th>
+                <td mat-cell *matCellDef="let food">{{food.itemNo}} </td>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="itemdescription">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let food"> {{food.itemname}} </td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
+            </table>
+            <mat-paginator [length]="lengthtwo" [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+          </div>
+          <br>
+          <br>
+          <div class="center"> <h3><strong>Your Meal</strong></h3> </div>
+          
+          <button mat-button color="primary" (click)="clearTable()">Clear Meal Table</button>
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="data" matSort>
+
+              <ng-container matColumnDef="selection">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let foods"><button mat-mini-fab color="primary" (click)="deleteRow(foods.id)">
+                  <mat-icon>delete</mat-icon>
+                </button></td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+          
+              <!-- id Column <button (click)="deleteRow(foods.id)">Remove</button> -->
+              <ng-container matColumnDef="itemNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> itemNo </th>
+                <td mat-cell *matCellDef="let foods">{{foods.id}} </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="itemdescription">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let foods"> {{foods.foodn}} </td>
+                <td mat-footer-cell *matFooterCellDef><strong>Total</strong></td>
+              </ng-container>
+
+              <!-- Carbs Column -->
+              <ng-container matColumnDef="carbs">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Carbohydrate Amount </th>
+                <td mat-cell *matCellDef="let foods"> {{foods.carbs}} </td>
+                <td mat-footer-cell *matFooterCellDef><strong>{{getTotalCarbs()}}</strong></td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+              <tr mat-footer-row class="sticky-footer" *matFooterRowDef="displayedColumns2"></tr>
+
+            </table>
+            <div>
+             
+            </div>
+            
+         <!--   <mat-paginator [length]="lengthone" [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>-->
+          </div>
+
+         <br>
+
+</body>

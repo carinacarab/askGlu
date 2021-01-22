@@ -48,14 +48,14 @@ export class RegisterComponent implements OnInit {
 
                 console.log(data.role);
                 
-                if (data.role = "Diabetic"){
+                if (data.role == "Diabetic"){
                   this.router.navigate(['diabeticreg']);
  
-                }else{ 
-                  if (data.role = "Support Person"){
+                }
+                if (data.role == "Support Person"){
                     this.router.navigate(['supportreg']);
                   }
-                }
+                
                 //this.router.navigate(['login']);  
             }
         );

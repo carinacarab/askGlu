@@ -18,6 +18,19 @@ import { MealplannerComponent } from './mealplanner/mealplanner.component';
 import { CommonModule } from '@angular/common';
 import { DiabeticregComponent } from './users/diabeticreg/diabeticreg.component';
 import { SupportregComponent } from './users/supportreg/supportreg.component';
+import { SugarentryComponent } from './sugarentry/sugarentry.component';
+import { SearchfieldComponent } from './searchfield/searchfield.component';
+import { FilterPipe } from './filter.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTableModule} from '@angular/material/table';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonModule} from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +45,10 @@ import { SupportregComponent } from './users/supportreg/supportreg.component';
     BsmanagerComponent,
     MealplannerComponent,
     DiabeticregComponent,
-    SupportregComponent
+    SupportregComponent,
+    SugarentryComponent,
+    SearchfieldComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -50,10 +66,20 @@ import { SupportregComponent } from './users/supportreg/supportreg.component';
       { path: 'mealplanner', component: MealplannerComponent },
       { path: 'diabeticreg', component: DiabeticregComponent},
       { path: 'supportreg', component: SupportregComponent},
+      { path: 'searchfield', component: SearchfieldComponent}
 
 
     ]),
     FormsModule,
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatTableModule,
+    MatRadioModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   exports: [
     FormsModule,

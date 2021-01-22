@@ -7,6 +7,7 @@ import { User } from '../Model/user';
 import { map } from 'rxjs/operators';
 import { ApiResponse } from '../Model/api-response';
 import { Posts } from '../Model/posts';
+import { Food } from '../Model/food';
 //import { catchError } from 'rxjs/operators';
 //import { throwError } from 'rxjs';
 
@@ -20,7 +21,6 @@ export class ServicesService {
   public user: Observable<User>;
 
   @Output() getLoggedInName : EventEmitter<any> = new EventEmitter();
-
 
   redirect_URL: string;
 
@@ -59,16 +59,73 @@ export class ServicesService {
     return this.http.get<Posts>(this.baseUrl + '/getposts.php');
   }
 
-  post(user, post): Observable<ApiResponse>{
-    console.log(user +" " + post);
-    return this.http.post<ApiResponse>(this.baseUrl +'/post.php', {user, post});
+  poster(user, post){
+    return this.http.post(this.baseUrl +'/post.php', {user, post});
   }
-  /*
-  handleError(error: HttpErrorResponse){
-    console.log("retrived error");
-    return throwError(error);
+
+  savereading(usern, reading): Observable<ApiResponse>{
+    return this.http.post<ApiResponse>(this.baseUrl + '/bsmanager.php', {usern, reading});
   }
-  */
+
+  getreadings(user){
+    return this.http.post(this.baseUrl + '/retrieve.php', {user});
+  }
+
+  getMeal(user){
+    return this.http.post(this.baseUrl + '/showMeal.php', {user});
+  }
+
+  getbloodstats(user){
+    return this.http.post(this.baseUrl + '/bloodcalculator.php', {user})
+  }
+
+  searchFoods(name):Observable<ApiResponse>{
+    return this.http.post<Food>(this.baseUrl + '/foodsmanipulator.php', {name});
+  }
+
+ /* mealRemixer(number, units, carbcount) {
+    return this.http.post(this.baseUrl + '/meal.php', {number, units, carbcount});
+  }*/
+
+  addMeal(user, itemNo):Observable<ApiResponse>{
+    return this.http.post<Food>(this.baseUrl+ '/meal.php', {user, itemNo});
+  }
+
+  getmedreqs(){
+    return this.http.post(this.baseUrl + '/getMeds.php', this.getToken());
+  }
+
+  deleteRow(itemno, user){
+    return this.http.post(this.baseUrl + '/deleteRows.php', {itemno, user});
+  }
+
+  clearFoods(userid){
+    return this.http.delete(this.baseUrl + '/clearTable.php', userid);
+  }
+
+  setTotalCarbs(total){
+    localStorage.setItem('carbs', total);
+  }
+
+  getTotalCarbs(){
+    return localStorage.getItem('carbs');
+  }
+
+  removeCarbs(){
+    localStorage.removeItem('carbs');
+  }
+
+  setLastSugar(reading: string){
+    localStorage.setItem('sugar', reading);
+  }
+
+  getSugar(){
+    return localStorage.getItem('sugar');
+  }
+
+  removeSugar(){
+    localStorage.removeItem('sugar');
+  }
 
   public get userVal(): User {
     return this.userSub.value;

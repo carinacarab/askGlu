@@ -1,0 +1,37 @@
+<body class="body" style="background-color: #d7fffcdf; height: 2000px;"> 
+    <div class="container">
+        <div class="center">
+          <h1><strong>Ready to eat?</strong></h1>
+        </div>
+        <br>
+
+        <app-sugarentry></app-sugarentry>
+
+        <app-searchfield></app-searchfield>
+
+        <br>
+        <div class="center">
+          <h2><strong>FINAL MEAL SUMMARY</strong></h2>
+        </div>
+        
+        <div class="p-3 mb-2 bg-light text-dark">
+            <h3>Your meal has a total of <strong>{{carbtotal}}</strong> grams of carbohydrates. </h3>
+            <h3> You need: </h3>
+             <ul>{{requiredInsulinAMTC}} units of insulin to correct your blood sugar</ul>
+             <ul>{{requiredInsulinAMTM}} units of insulin to cover your meal</ul>
+            <h3> This totals to <strong>{{requiredInsulinAMTT}}</strong> units of insulin at this time.</h3>
+          
+        </div>
+  
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" (click)="refreshPage()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <br>
+
+        <footer class="center"><i>Enjoy your meal!</i>&nbsp;&nbsp;<img src="../assets/hugEmoji.png" width="20" height="20"/></footer>
+        
+
+
+
+    </div>
+</body>

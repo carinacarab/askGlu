@@ -1,0 +1,12 @@
+<body class="body" style="background-color: #d7fffcdf; height: 75px;"> 
+   
+        <form [formGroup]= "bsform" (ngSubmit)="onSubmit(bsform)">
+            <div class="form-group row">
+                <label for="bs" class="col-sm-6 col-form-label">How's our sugar reading today?</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" formControlName="bs" id="bs" placeholder="mg/dl">
+                </div>
+                <button type="submit" class="btn btn-outline-dark" [disabled]="bsform.invalid">Post</button>
+            </div>
+        </form>   
+</body>

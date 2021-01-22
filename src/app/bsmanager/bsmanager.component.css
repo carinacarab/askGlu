@@ -4,3 +4,19 @@ form {
     margin: auto;
     position: relative;
 }
+
+#divChart{
+    display:block;
+    width: 800px;
+    height: 800px;
+    margin:auto;
+    position:relative;
+}
+
+table {
+    width: 100%;
+  }
+  
+  button {
+    margin: 0 8px 8px 0;
+  }

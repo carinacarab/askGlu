@@ -9,6 +9,8 @@ import { RegisterComponent } from './users/register/register.component';
 import { AuthguardGuard } from './authguard.guard';
 import { DiabeticregComponent } from './users/diabeticreg/diabeticreg.component';
 import { SupportregComponent } from './users/supportreg/supportreg.component';
+import { SearchfieldComponent } from './searchfield/searchfield.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +22,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard], runGuardsAndResolvers: 'always'},
   { path: 'bsmanager', component: BsmanagerComponent, canActivate: [AuthguardGuard] },
   { path: 'mealplanner', component: MealplannerComponent, canActivate: [AuthguardGuard] },
+  { path: 'searchfield', component: SearchfieldComponent}
 
 
 ];
