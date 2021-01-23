@@ -2,14 +2,12 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-//import { ApiResponse } from '../Model/api-response';
 import { User } from '../Model/user';
 import { map } from 'rxjs/operators';
 import { ApiResponse } from '../Model/api-response';
 import { Posts } from '../Model/posts';
 import { Food } from '../Model/food';
-//import { catchError } from 'rxjs/operators';
-//import { throwError } from 'rxjs';
+
 
 
 @Injectable({
@@ -55,6 +53,10 @@ export class ServicesService {
     return this.http.post<ApiResponse>(this.baseUrl + '/diabeticregister.php', {username, permdose, time, correction, mealratio, pillfreq});
   }
 
+  diabeticUpdate(username, permdose, time, correction, mealratio, pillfreq){
+    return this.http.post(this.baseUrl + '/diabeticupdate.php', {username, permdose, time, correction, mealratio, pillfreq});
+  }
+
   getPosts():Observable<ApiResponse> {
     return this.http.get<Posts>(this.baseUrl + '/getposts.php');
   }
@@ -82,10 +84,6 @@ export class ServicesService {
   searchFoods(name):Observable<ApiResponse>{
     return this.http.post<Food>(this.baseUrl + '/foodsmanipulator.php', {name});
   }
-
- /* mealRemixer(number, units, carbcount) {
-    return this.http.post(this.baseUrl + '/meal.php', {number, units, carbcount});
-  }*/
 
   addMeal(user, itemNo):Observable<ApiResponse>{
     return this.http.post<Food>(this.baseUrl+ '/meal.php', {user, itemNo});
@@ -141,6 +139,15 @@ export class ServicesService {
 
   removeToken(){
     localStorage.removeItem('user');
+  }
+
+  getUserInfo(){
+    return this.http.post(this.baseUrl + '/getUserInfo.php', this.getToken());  
+  }
+
+  updatePass(user, newp){
+    console.log(user);
+    return this.http.post(this.baseUrl + '/updateLogin.php', {user, newp});
   }
 
   logout() {

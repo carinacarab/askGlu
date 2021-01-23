@@ -1,1 +1,129 @@
-<p>edit works!</p>
+<body class="body" style="background-color: #d7fffcdf; height: 2000px;"> 
+    <div class="container">
+        <div class="center">
+          <h1><strong>USER SETTINGS</strong></h1>
+        </div>
+        <br>
+
+        <div>
+            <h3><strong>User Information</strong></h3>
+        </div>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" >
+          
+              <!-- first Column -->
+              <ng-container matColumnDef="first">
+                <th mat-header-cell *matHeaderCellDef > FIRST NAME </th>
+                <td mat-cell *matCellDef="let user">{{user.first}} </td>
+              </ng-container>
+          
+              <!-- last Column -->
+              <ng-container matColumnDef="last">
+                <th mat-header-cell *matHeaderCellDef > LAST NAME </th>
+                <td mat-cell *matCellDef="let user"> {{user.last}} </td>
+              </ng-container>
+
+              <!-- username Column -->
+              <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef > USERNAME </th>
+                <td mat-cell *matCellDef="let user">{{user.username}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef > EMAIL </th>
+                <td mat-cell *matCellDef="let user">{{user.email}} </td>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="password">
+                <th mat-header-cell *matHeaderCellDef > password </th>
+                <td mat-cell *matCellDef="let user"> *******</td>
+              </ng-container>-->
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <br><br>
+        <div class="center">
+            <h4><i>Need to change your password?</i></h4>
+        </div>
+        <div class="center">
+        <form [formGroup]= "passForm" (ngSubmit)="updatePassword()">
+            <div class="input-group mb-3">
+                <!--<input type="text" class="form-control" formControlName="oldpass" placeholder="old password">-->
+                <input type="text" class="form-control" formControlName="newpass" placeholder="new password">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit" [disabled]="passForm.invalid">Change Password</button>
+                </div>
+            </div>
+        </form>
+        </div>
+      <!-- <div class="container">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter desired new password: </mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matPrefix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+        </div>--> 
+
+        <br><br>
+
+        <div>
+            <h3><strong>Have your doses changed? Edit them here.</strong></h3>
+        </div>
+        <!--table to update med requirements-->
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="secondDataSource" >
+          
+              <!-- id Column -->
+              <ng-container matColumnDef="permdose">
+                <th mat-header-cell *matHeaderCellDef > Permanent Dose </th>
+                <td mat-cell *matCellDef="let med">{{med.permanentdose}} </td>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="timeofday">
+                <th mat-header-cell *matHeaderCellDef > Time of Day </th>
+                <td mat-cell *matCellDef="let med"> {{med.timeofday}} </td>
+              </ng-container>
+
+              <!-- id Column -->
+              <ng-container matColumnDef="correction">
+                <th mat-header-cell *matHeaderCellDef > Correction Ratio </th>
+                <td mat-cell *matCellDef="let med">{{med.correctionratio}} </td>
+              </ng-container>
+
+              <!-- id Column -->
+              <ng-container matColumnDef="mealratio">
+                <th mat-header-cell *matHeaderCellDef > Meal Ratio </th>
+                <td mat-cell *matCellDef="let med">{{med.mealratio}} </td>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="pillfreq">
+                <th mat-header-cell *matHeaderCellDef > Pill Frequency </th>
+                <td mat-cell *matCellDef="let med"> {{med.pillfrequency}}</td>
+              </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+
+              <tr mat-row *matRowDef="let row; columns: displayedColumns2;" ></tr>
+            </table>
+          </div>
+          <br>
+        <div>
+            <button mat-button color="primary" (click)="changeReqs()">Click here to change med requirements</button>
+
+        </div>
+
+
+
+
+
+    </div>
+</body>

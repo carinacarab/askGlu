@@ -29,6 +29,8 @@ export class BsmanagerComponent implements OnInit {
 
   displayedColumns2: string[] = ['date', 'sugar'];
 
+  length: number;
+
 
 
 
@@ -55,6 +57,7 @@ export class BsmanagerComponent implements OnInit {
     this.apiService.getreadings(this.username).subscribe(
       (data:any) => {
         this.informacion = data;
+        this.length = this.informacion.length;
         //console.log(this.informacion[0].sugar);
         for(let i=0; i<this.informacion.length; i++){
           this.dates.push(data[i].date);

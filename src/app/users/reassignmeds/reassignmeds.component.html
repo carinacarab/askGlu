@@ -1,0 +1,59 @@
+<body class="body" style="background-color: #d7fffcdf; height: 1000px;"> 
+    <div class="container">
+    
+        <div class="center">
+          <h3>Re-enter the correct dosage information to update your doses here.</h3>
+        </div>
+        <br>
+        
+     
+        <form [formGroup]= "diabeticForm" (ngSubmit)="onSubmit()">     
+
+            <div class="form-group">
+                <label for="permdose">What's your new prescribed permanent dose of insulin?</label>
+                <input type="number" class="form-control" formControlName="permdose" id="permdose" autocomplete="off">
+                <div class="alert alert-warning" *ngIf="diabeticForm.get('permdose').hasError('required') && diabeticForm.get('permdose').touched">This field is required.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="time">When do you take your permanent dose?</label>
+                <select class="form-control" formControlName="time" id="time" aria-placeholder="">
+                  <option>day</option>
+                  <option>night</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="corratio">Enter your new (or old) correction ratio:</label>
+                <input type="number" class="form-control" formControlName="corratio" id="corratio" autocomplete="off">
+                <div class="alert alert-warning" *ngIf="diabeticForm.get('corratio').hasError('required') && diabeticForm.get('corratio').touched">This field is required.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="mealratio">Enter your new (or old) meal ratio:</label>
+                <input type="number" class="form-control" formControlName="mealratio" id="mealratio" autocomplete="off">
+                <div class="alert alert-warning" *ngIf="diabeticForm.get('mealratio').hasError('required') && diabeticForm.get('mealratio').touched">This field is required.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="freq">How often do you take pills for your diabetes?</label>
+                <select class="form-control" formControlName="freq" id="freq" aria-placeholder="">
+                  <option>Never</option>
+                  <option>Once</option>
+                  <option>Twice</option>
+                </select>
+            </div>
+            <br>
+            <div class="body">
+                <p>If you haven't been told today: <strong>YOU</strong> matter.</p>
+            </div>
+            <br>
+            <div class="center">
+                <button type="submit" class="btn btn-success">Change Medicine Requirements</button>
+                <div *ngIf="invalidRegister" class="error">
+                    <div> There were errors in this form. </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

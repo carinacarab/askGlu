@@ -30,6 +30,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
+import { ReassignmedsComponent } from './users/reassignmeds/reassignmeds.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { MatSortModule } from '@angular/material/sort';
     SupportregComponent,
     SugarentryComponent,
     SearchfieldComponent,
-    FilterPipe
+    FilterPipe,
+    ReassignmedsComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,9 @@ import { MatSortModule } from '@angular/material/sort';
       { path: 'mealplanner', component: MealplannerComponent },
       { path: 'diabeticreg', component: DiabeticregComponent},
       { path: 'supportreg', component: SupportregComponent},
-      { path: 'searchfield', component: SearchfieldComponent}
+      { path: 'searchfield', component: SearchfieldComponent},
+      { path: 'edit', component: EditComponent},
+      { path: 'reassignmeds', component: ReassignmedsComponent}
 
 
     ]),
