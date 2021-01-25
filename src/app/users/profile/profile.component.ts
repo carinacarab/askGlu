@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
       
       }
     );
-    window.location.reload();
+    //window.location.reload();
   }
 
 

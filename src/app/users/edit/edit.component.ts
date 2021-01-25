@@ -72,7 +72,7 @@ export class EditComponent implements OnInit {
         
       }
     );
-    window.location.reload();
+    //window.location.reload();
   }
 
 }

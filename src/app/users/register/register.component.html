@@ -40,12 +40,11 @@
         <input type="password" class="form-control" formControlName="password" id="username" autocomplete="off">
         <div class="alert alert-warning" *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">This field is required.</div>
       </div>
-
+<!-- support person functionality not done yet, so default will be just to diabetics-->
       <div class="form-group">
         <label for="role">Are you a..?</label>
         <select class="form-control" formControlName="role" id="role" aria-placeholder="">
           <option>Diabetic</option>
-          <option>Support Person</option>
         </select>
       </div>
 

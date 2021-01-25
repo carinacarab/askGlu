@@ -4,9 +4,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chart } from 'node_modules/chart.js';
-import { ConditionalExpr, identifierModuleUrl } from '@angular/compiler';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { CommonModule } from "@angular/common";
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -30,9 +27,6 @@ export class BsmanagerComponent implements OnInit {
   displayedColumns2: string[] = ['date', 'sugar'];
 
   length: number;
-
-
-
 
   bsform: FormGroup;
   username:string;
@@ -63,11 +57,7 @@ export class BsmanagerComponent implements OnInit {
           this.dates.push(data[i].date);
           this.sugar.push(data[i].sugar);
         }
-        //console.log(this.dates);
-        //console.log(this.sugar);
-        /*if(data.date){
-          console.log(data.date);
-        }else {console.log(this.informacion);}*/
+       
         this.dataSource = new MatTableDataSource<string>(this.informacion);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -82,7 +72,6 @@ export class BsmanagerComponent implements OnInit {
         this.statistics.push(data);
         //console.log(this.statistics);
         this.data = new MatTableDataSource<string>(this.statistics);
-        //this.data.paginator = this.paginator;
       }
     );
 

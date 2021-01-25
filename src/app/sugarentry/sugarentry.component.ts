@@ -35,7 +35,7 @@ export class SugarentryComponent implements OnInit {
   
     this.apiService.savereading(this.username, this.bsform.controls.bs.value).subscribe(
       data=> {
-        window.location.reload();
+        //window.location.reload();
         //this.router.navigate(['bsmanager']);
       }
 

@@ -8,6 +8,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTable, MatTableDataSource} from '@angular/material/table';
 import { Food } from '../Model/food';
 import { MatSort } from '@angular/material/sort';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-searchfield',
@@ -70,17 +71,21 @@ export class SearchfieldComponent implements OnInit {
       (data:any) => {
         this.meal = data;
         console.log(this.meal);
-        this.lengthone = this.meal.length;
+        if(this.meal){
+          this.lengthone = this.meal.length;
 
-        for(let i=0; i<this.meal.length; i++){
-          this.ids.push(data[i].id);
-          this.units.push(data[i].unit);
-          this.foodns.push(data[i].foodn);
-          this.carbs.push(data[i].carbs);
-
-          this.total= this.total + parseFloat(data[i].carbs);
-
+          for(let i=0; i<this.meal.length; i++){
+            this.ids.push(data[i].id);
+            this.units.push(data[i].unit);
+            this.foodns.push(data[i].foodn);
+            this.carbs.push(data[i].carbs);
+  
+            this.total= this.total + parseFloat(data[i].carbs);
+  
+          }
         }
+
+      
         this.data = new MatTableDataSource<Food>(this.meal);
         this.data.sort = this.sort;
 
@@ -121,7 +126,10 @@ export class SearchfieldComponent implements OnInit {
       data=>{
       }
     );
-    window.location.reload();
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['mealplanner']);
+  }); 
+    
     //this.table.renderRows();
   }
 
@@ -131,7 +139,9 @@ export class SearchfieldComponent implements OnInit {
        //window.location.reload();
       }
       );
-    window.location.reload();
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['mealplanner']);
+      }); 
   }
   
 
@@ -147,8 +157,7 @@ export class SearchfieldComponent implements OnInit {
 
     this.addToTable(this.selectedRow['itemNo']);
 
-    window.location.reload();
-    window.location.reload();
+    
 
 
   }
@@ -160,6 +169,10 @@ export class SearchfieldComponent implements OnInit {
         console.log(this.meal);
       }
     )
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['mealplanner']);
+  }); 
+  
   }
 
   getTotalCarbs(){

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../services/services.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class MealplannerComponent implements OnInit {
 
 
 
-  constructor(private apiService: ServicesService) {
+  constructor(private apiService: ServicesService, private route: ActivatedRoute, private router: Router) {
 
     this.sugarReading = parseInt(this.apiService.getSugar());
     this.carbtotal = parseFloat(this.apiService.getTotalCarbs());
@@ -49,7 +50,7 @@ export class MealplannerComponent implements OnInit {
         this.requiredInsulinAMTC = parseFloat(this.requiredInsulinAMTC.toFixed(2));
         this.requiredInsulinAMTT = this.requiredInsulinAMTC + this.requiredInsulinAMTM;
         this.requiredInsulinAMTT = parseFloat(this.requiredInsulinAMTT.toFixed(2));
-        console.log(this.requiredInsulinAMTT);
+       // console.log(this.requiredInsulinAMTT);
       }
     )
    }
@@ -58,7 +59,9 @@ export class MealplannerComponent implements OnInit {
 
   }
   refreshPage(){
-    window.location.reload();
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['mealplanner']);
+  }); 
   }
 
   calcCorrection(value:number, value2: number){
